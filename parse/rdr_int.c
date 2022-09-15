@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:27:02 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/13 10:54:35 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/14 13:52:18 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static	int	read_heredoc(char *file, char *delime, bool expand)
 	if (fd == -1)
 		return (ft_putstr_fd("minishell: ", 2), ft_putstr_fd(file, 2),
 			ft_putstr_fd(": ", 2), perror(NULL), fd);
-	line = readline("heredoc> ");
+	line = readline("> ");
 	while (line)
 	{
 		if (!strcmp(line, delime))
@@ -44,7 +44,7 @@ static	int	read_heredoc(char *file, char *delime, bool expand)
 		if (write_heredoc_line(file, fd, line, expand))
 			return (-1);
 		free(line);
-		line = readline("heredoc> ");
+		line = readline("> ");
 	}
 	return (free(line), close(fd), 0);
 }

@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:15:32 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/14 09:38:04 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/15 08:34:08 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	free_tree(t_parse **parse)
 	tree = *parse;
 	if (!tree)
 		return ;
-	free_tree_node(&tree->left);
-	free_tree_node(&tree->right);
+	free_tree(&tree->left);
+	free_tree(&tree->right);
 	if (!*parse)
 		return ;
 	free_str((*parse)->av);
