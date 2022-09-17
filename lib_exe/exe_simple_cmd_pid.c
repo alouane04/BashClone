@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:58:09 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/13 11:41:21 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/17 18:34:44 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	exe_simple_cmd_pid(t_parse *parse, int std_i[2], int std_o[2])
 	pid = exe_fork_set(std_i, std_o);
 	if (pid)
 		return (pid);
-	if (!parse->av && !*(parse->av))
+	if (!parse->av && !parse->av[0])
 		exit(0);
 	built_in = check_built_in(parse->av);
 	if (built_in)

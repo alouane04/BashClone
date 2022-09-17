@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 14:54:31 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/14 09:39:03 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/17 09:07:35 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,5 @@ int			exe(t_parse *parse, int std_i[2], int std_o[2]);
 int			exe_waitpid(int pid);
 
 void		exe_set_signal(int catch_signals);
-
-void	free_tree(t_parse **parse);
 
 #endif

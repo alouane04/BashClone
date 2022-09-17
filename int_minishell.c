@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 00:31:09 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/13 09:40:49 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/17 19:38:41 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	int_minishell(int ac, char **av, char **env)
 	g_shell.exit_s = 0;
 	g_shell.envlst = NULL;
 	if (creat_env(env) || shlvl_env() || set_env("SHELL", av[0]))
-		return (perror("minishell"), ft_lstclear(&g_shell.envlst), -1);
+		return (perror("minishell"),
+			ft_lstclear(&g_shell.envlst, (t_delfn)ft_free_env), -1);
 	return (0);
 }

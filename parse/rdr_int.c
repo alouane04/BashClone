@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:27:02 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/14 13:52:18 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/16 11:12:06 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static char	*filename(t_token str)
 		return (NULL);
 	if (ft_lstsize(file) != 1)
 		return (ft_putstr_fd("error redirection in: ", 2),
-			ft_putstr_fd(str.str, 2), ft_lstclear(&file), NULL);
+			ft_putstr_fd(str.str, 2), ft_lstclear(&file, free), NULL);
 	s = file->content;
 	return (free(file), s);
 }
