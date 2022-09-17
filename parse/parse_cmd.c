@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:09:44 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/13 10:56:23 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/17 19:37:22 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ t_parse	*parse_cmd(t_lexer *lexer)
 	while (cmd_e && cmd_e != RULE_E)
 		cmd_e = parse_cmd_elem(lexer, &rdrlst, &arglst);
 	if (!cmd_e)
-		return (ft_lstclear(&rdrlst), ft_lstclear(&arglst), NULL);
+		return (ft_lstclear(&rdrlst, (t_delfn)free_rdr),
+			ft_lstclear(&arglst, (t_delfn)free), NULL);
 	if (!rdrlst && !arglst)
 		return (RULE_E);
 	return (ft_create_node(&rdrlst, &arglst));

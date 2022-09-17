@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 18:34:05 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/14 14:46:27 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/17 09:08:17 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,14 @@ char	*enc_rm_quotes(char *str);
 
 char	**lst_to_str(t_list *arglst);
 
-void	print_err(t_lexer *lexer);
+void	print_err(t_lexer *lexer, t_token token);
 
 void	free_str(char **str);
 
-void	free_node(t_parse *node);
-
-void	free_tree_node(t_parse **parse);
+void	free_tree_node(t_parse *parse);
 
 void	free_rdr(t_rdr *rdr);
+
+void	free_tree(t_parse **parse);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 18:49:09 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/14 11:26:59 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/16 19:46:16 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,10 @@ static char	*expand_env(char **line)
 
 	i = 0;
 	s = *line;
-	//if (ft_isdigit)
-	if (s[i++] != '$' || (s[i] != '_' && !ft_isalnum(s[i])))
+	if (s[i++] != '$' || (!ft_isalpha(s[i]) && (s[i] != '_')))
 		return (NOT_FOUND);
 	s++;
-	while (s[i] == '_' || ft_isalnum(s[i]))
+	while (ft_isalnum(s[i]) || s[i] == '_')
 		i++;
 	*line = s + i;
 	value = get_env_n(s, i);
