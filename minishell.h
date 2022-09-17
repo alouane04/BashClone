@@ -15,6 +15,8 @@
 
 # include "parse/parse.h"
 # include "libft/libft.h"
+# include <sys/types.h>
+# include <sys/wait.h>
 
 typedef int			(*t_built_in)(int, char **);
 
