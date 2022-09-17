@@ -6,34 +6,36 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:47:40 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/15 08:30:39 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/17 19:37:55 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 #include "lexer.h"
+#include "../minishell.h"
 
-void	free_tree_node(t_parse **parse)
+void	print_err(t_lexer *lexer, t_token token)
 {
-	t_parse	*tree;
-
-	tree = *parse;
-	if (!tree)
-		return ;
-	free_tree_node(&tree->left);
-	free_tree_node(&tree->right);
-	free_node(tree);
-	*parse = NULL;
-}
-
-void	print_err(t_lexer *lexer)
-{
-	ft_putstr_fd("errur on line: ", 2);
-	ft_putstr_fd(lexer->line, 2);
-	ft_putstr_fd("'\n'in token: ", 2);
-	ft_putstr_fd(token_peak(lexer).str, 2);
-	ft_putstr_fd("'\n'in position ", 2);
-	ft_putstr_fd(ft_itoa(lexer->pos), 2);
+	if (token.type == EOF_T)
+		ft_putstr_fd("minishell: syntax error: unexpected end of file\n", 2);
+	else if (token.type == ERROR)
+	{
+		if ((*lexer).error == L_EOF)
+			ft_putstr_fd("minishell: syntax error: unexpected end of file\n", 2);
+		else if ((*lexer).error == L_EOT)
+		{
+			ft_putstr_fd("minishell: syntax error: ", 2);
+			ft_putstr_fd("unrecognized token at position ", 2);
+			ft_putnbr_fd((*lexer).pos + 1, 2);
+			ft_putstr_fd("\n", 2);
+		}
+	}
+	else
+	{
+		ft_putstr_fd("minishell: syntax error near unexpected token '", 2);
+		write(2, token.str, token.len);
+		ft_putstr_fd("'\n", 2);
+	}
 }
 
 t_parse	*parse_pipe(t_lexer *lexer)
@@ -46,10 +48,10 @@ t_parse	*parse_pipe(t_lexer *lexer)
 	lexer_next(lexer);
 	pipline = parse_pipline(lexer);
 	if (pipline == RULE_E)
-		return (print_err(lexer), NULL);
+		return (print_err(lexer, token_peak(lexer)), NULL);
 	pipe = parse_int(Pipe, NULL, pipline);
 	if (!pipe && !pipline)
-		return (free_tree_node(&pipe), free_tree_node(&pipline), pipe);
+		return (free_tree(&pipe), free_tree(&pipline), NULL);
 	return (pipe);
 }
 
@@ -67,7 +69,7 @@ t_parse	*parse_pipline(t_lexer *lexer)
 		if (pipe)
 			pipe->left = cmd;
 		else
-			free_tree_node(&cmd);
+			free_tree(&cmd);
 		return (pipe);
 	}
 	return (cmd);

@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 12:49:46 by ariahi            #+#    #+#             */
-/*   Updated: 2022/08/28 11:45:55 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/17 10:23:31 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ t_list	*parse_rdr(t_lexer *lexer, t_list **rdrlst)
 	lexer_next(lexer);
 	str = lexer_next(lexer);
 	if (str.type != STR)
-		return (print_err(lexer), NULL);
+		return (print_err(lexer, str), NULL);
 	return (add_rdr(get_rdr_type(rdr), str, rdrlst));
 }
