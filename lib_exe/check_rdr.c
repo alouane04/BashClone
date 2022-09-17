@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 01:51:27 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/13 11:24:02 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/17 19:38:08 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static	int	open_file(t_rdr *rdr)
 	else if (rdr->type == O)
 		fd = open(rdr->rdr, O_WRONLY | O_TRUNC | O_CREAT, 0664);
 	if (fd == -1)
-		return (ft_putstr_fd("minishell:", 2), perror(NULL),
-			ft_putstr_fd(":", 2), ft_putstr_fd(rdr->rdr, 2), -1);
+		return (ft_putstr_fd("minishell:", 2), ft_putstr_fd(rdr->rdr, 2),
+			ft_putstr_fd(":", 2), perror(NULL), -1);
 	return (fd);
 }
 
@@ -33,9 +33,7 @@ int	stdio_res(int stdio[2])
 {
 	if (!stdio)
 		return (0);
-	stdio[0] = dup2(stdio[0], 0);
-	stdio[1] = dup2(stdio[1], 1);
-	if (stdio[1] == -1 || stdio[0] == -1)
+	if (dup2(stdio[0], 0) == -1 || dup2(stdio[1], 1) == -1)
 		return (perror("minishell"), -1);
 	return (0);
 }
@@ -60,12 +58,10 @@ static	int	stdio_dup2(t_rdr *rdr, int fd)
 	fd_dup2 = -1;
 	if (rdr->type == R_I || rdr->type == I)
 		fd_dup2 = dup2(fd, 0);
-	if (fd_dup2 == -1)
-		return (perror("minishell"), -1);
 	else
 		fd_dup2 = dup2(fd, 1);
 	if (fd_dup2 == -1)
-		return (perror("minishell"), -1);
+		perror("minishell");
 	return (fd_dup2);
 }
 
