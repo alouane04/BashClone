@@ -6,21 +6,21 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 04:27:12 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/13 11:22:37 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/18 09:55:03 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include <limits.h>
 
-static int	exe_exec(char *path, char **envp)
+static int	exe_exec(char *path, char **av)
 {
 	char	**env_p;
 
 	env_p = get_env_p();
 	if (!env_p)
 		return (-1);
-	execve(path, envp, env_p);
+	execve(path, av, env_p);
 	free_str(env_p);
 	return (-1);
 }
@@ -37,7 +37,7 @@ static char	*join_path(char *path, char *dir, char *file)
 	return (path);
 }
 
-static int	exe_path(char *path, char *path_env, char **envp)
+static int	exe_path(char *path, char *path_env, char **av)
 {
 	char	exe_path[PATH_MAX];
 	char	*dup;
@@ -53,7 +53,7 @@ static int	exe_path(char *path, char *path_env, char **envp)
 	{
 		if (join_path(exe_path, ft_strsep(&str, ":"), path) == NULL)
 			break ;
-		exe_exec(exe_path, envp);
+		exe_exec(exe_path, av);
 		if (errno == EACCES)
 			acces = 0;
 		else if (errno == ENOENT || errno == ENOTDIR)
@@ -65,7 +65,7 @@ static int	exe_path(char *path, char *path_env, char **envp)
 	return (free(dup), -1);
 }
 
-int	exe_execve(char *path, char **envp)
+int	exe_execve(char *path, char **av)
 {
 	char	*path_env;
 
@@ -73,9 +73,9 @@ int	exe_execve(char *path, char **envp)
 	if (!*path)
 		return (-1);
 	if (ft_strchr(path, '/'))
-		return (exe_exec(path, envp));
+		return (exe_exec(path, av));
 	path_env = get_env("PATH");
 	if (!path_env)
 		return (-1);
-	return (exe_path(path, path_env, envp));
+	return (exe_path(path, path_env, av));
 }
