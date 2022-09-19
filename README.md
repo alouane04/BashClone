@@ -5,8 +5,15 @@
 <p align="center">
 	<img src="https://cdn.intra.42.fr/users/ariahi.jpg" height=75>
 	<h3 align="center">
+	<a href="https://www.linkedin.com">rel-maza</a>
+	
+	</h3>
+</p>
+<p align="center">
+	<img src="https://cdn.intra.42.fr/users/rel-maza.jpg" height=75>
+	<h3 align="center">
 	<a href="https://www.linkedin.com/in/rida-el-mazary/">rel-maza</a>
-	<span> · </span>
+	
 	</h3>
 </p>
 
