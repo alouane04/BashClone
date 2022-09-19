@@ -5,16 +5,12 @@
 <p align="center">
 	<img src="https://cdn.intra.42.fr/users/ariahi.jpg" height=75>
 	<h3 align="center">
-	<a href="https://www.linkedin.com">rel-maza</a>
-	
-	</h3>
+	<a href="https://www.linkedin.com">ariahi</a>
 </p>
 <p align="center">
 	<img src="https://cdn.intra.42.fr/users/rel-maza.jpg" height=75>
 	<h3 align="center">
 	<a href="https://www.linkedin.com/in/rida-el-mazary/">rel-maza</a>
-	
-	</h3>
 </p>
 
 From your comments, you seem to be confused about exactly what a shell is. The kernel is responsible for managing the system. It's the part that actually loads and runs programs, accesses files, allocates memory, etc. But the kernel has no user interface; you can only communicate with it by using another program as an intermediary.
