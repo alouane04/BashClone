@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 13:07:42 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/14 14:49:43 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/17 08:35:45 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef enum s_error
 typedef enum s_type
 {
 	ERROR = -1,
+	EOF_T,
 	PIPE,
 	l_I,
 	l_O,

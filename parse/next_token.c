@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 18:34:05 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/13 10:58:07 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/17 20:08:26 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,7 @@ static t_token	token_check(t_lexer *lexer, char *str, t_type type)
 {
 	if (!ft_strncmp(lexer->line, str, ft_strlen(str)))
 		return (token_int(type, str, ft_strlen(str)));
-	return (token_int(ERROR, NULL, 0));
-}
-
-static char	*ft_str(char *str, int i)
-{
-	int		j;
-	char	*dst;
-
-	j = -1;
-	dst = malloc(sizeof(char) * i);
-	if (!dst)
-		return (NULL);
-	while (i > ++j)
-		dst[j] = str[j];
-	return (dst);
+	return (lexer->error = L_EOT, token_int(ERROR, NULL, 0));
 }
 
 static t_token	string_check(t_lexer *lexer)
@@ -58,7 +44,7 @@ static t_token	string_check(t_lexer *lexer)
 		return (lexer->error = L_EOT, token_int(ERROR, NULL, 0));
 	if (mode != UNQUOTED)
 		return (lexer->error = L_EOF, token_int(ERROR, NULL, 0));
-	return (token_int(STR, ft_str(lexer->line, i), i));
+	return (token_int(STR, lexer->line, i));
 }
 
 t_token	next_token(t_lexer *lexer)
@@ -67,13 +53,13 @@ t_token	next_token(t_lexer *lexer)
 
 	token = token_check(lexer, "|", PIPE);
 	if (token.type == ERROR)
-		token = token_check(lexer, ">", l_O);
+		token = token_check(lexer, "<<", l_R_I);
 	if (token.type == ERROR)
 		token = token_check(lexer, "<", l_I);
 	if (token.type == ERROR)
 		token = token_check(lexer, ">>", l_R_O);
 	if (token.type == ERROR)
-		token = token_check(lexer, "<<", l_R_I);
+		token = token_check(lexer, ">", l_O);
 	if (token.type == ERROR)
 		token = string_check(lexer);
 	return (token);

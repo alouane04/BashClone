@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 16:21:03 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/13 11:06:53 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/17 08:51:17 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static void	skip_spaces(t_lexer *lexer)
 t_token	token_peak(t_lexer *lexer)
 {
 	skip_spaces(lexer);
-	if (!lexer->line)
-		return (token_int(ERROR, NULL, 0));
+	if (!*lexer->line)
+		return (token_int(EOF_T, NULL, 0));
 	return (next_token(lexer));
 }
 

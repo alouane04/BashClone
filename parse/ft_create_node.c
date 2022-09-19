@@ -6,23 +6,11 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 19:32:48 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/13 15:55:17 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/17 18:47:02 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
-
-void	free_str(char **str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return ;
-	while (str[i])
-		free(str[i++]);
-	free(str);
-}
 
 char	**lst_to_str(t_list *arglst)
 {
@@ -43,15 +31,6 @@ char	**lst_to_str(t_list *arglst)
 	return (av[i] = NULL, av);
 }
 
-void	free_node(t_parse *parse)
-{
-	if (!parse)
-		return ;
-	free_str(parse->av);
-	ft_lstclear(&parse->rdr_lst);
-	free(parse);
-}
-
 t_parse	*parse_int(t_parse_type type, t_parse *left, t_parse *right)
 {
 	t_parse	*parse;
@@ -62,6 +41,9 @@ t_parse	*parse_int(t_parse_type type, t_parse *left, t_parse *right)
 	parse->left = left;
 	parse->right = right;
 	parse->type = type;
+	parse->ac = 0;
+	parse->av = NULL;
+	parse->rdr_lst = NULL;
 	return (parse);
 }
 
@@ -74,10 +56,10 @@ t_parse	*ft_create_node(t_list **rdrlst, t_list **arglst)
 	node = parse_int(simple_cmd, NULL, NULL);
 	av = lst_to_str(*arglst);
 	ac = ft_lstsize(*arglst);
-	ft_lstclear(arglst);
+	ft_lstclear(arglst, free);
 	if (!av || !node)
-		return (perror("minishell"), free_node(node),
-			free_str(av), ft_lstclear(rdrlst), NULL);
+		return (perror("minishell"), free_tree_node(node),
+			free_str(av), ft_lstclear(rdrlst, (t_delfn)free_rdr), NULL);
 	node->rdr_lst = *rdrlst;
 	node->av = av;
 	node->ac = ac;
