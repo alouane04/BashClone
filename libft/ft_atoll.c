@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 19:14:01 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/13 11:08:24 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/18 11:08:38 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ long long	ft_atoll(const char *str)
 	while (ft_isdigit(str[i]))
 	{
 		nb = (str[i++] - 48);
-		if (sign == 1 && (res - LLONG_MAX) / 10 < res)
+		if (sign == 1 && (LLONG_MAX - res) / 10 < res)
 			return (errno = ERANGE, LLONG_MAX);
-		if (sign == -1 && (res + LLONG_MIN) / 10 > res)
+		if (sign == -1 && (LLONG_MIN + res) / 10 > res)
 			return (errno = ERANGE, LLONG_MIN);
 		res = res * 10 + nb * sign;
 	}

@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 00:43:59 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/13 11:34:18 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/18 14:43:51 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static	int	home(void)
 
 	home = get_env("HOME");
 	if (!home)
-		return (ft_putstr_fd("minishell: cd:", 2),
-			ft_putstr_fd("HOME not set", 2), -1);
+		return (ft_putstr_fd("minishell: cd: ", 2),
+			ft_putstr_fd("HOME not set\n", 2), -1);
 	return (0);
 }
 
