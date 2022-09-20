@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+         #
+#    By: rel-maza <rel-maza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/17 13:09:16 by ariahi            #+#    #+#              #
-#    Updated: 2022/09/17 19:44:25 by ariahi           ###   ########.fr        #
+#    Updated: 2022/09/20 15:57:21 by rel-maza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,15 +22,15 @@ SRC = minishell.c int_minishell.c expand.c parse.c free_tree.c\
 	lib_env/add_env.c lib_env/ft_free_env.c lib_env/get_env.c lib_env/int_env.c\
 		lib_env/set_env.c lib_env/update_env.c lib_env/ft_find.c\
 			lib_env/get_env_p.c lib_env/unset_env.c\
-	lib_built_in/exe_cd.c lib_built_in/exe_echo.c lib_built_in/exe_env.c\
-		lib_built_in/exe_exit.c lib_built_in/exe_export.c lib_built_in/exe_pwd.c\
-			lib_built_in/exe_unset.c\
+	lib_built_in/cd_exe.c lib_built_in/echo_exe.c lib_built_in/env_exe.c\
+		lib_built_in/exit_exe.c lib_built_in/export_exe.c lib_built_in/pwd_exe.c\
+			lib_built_in/unset_exe.c\
 
 NAME = minishell
 
 CC = cc
 
-CFLAGS = -L /Users/ariahi/.homebrew/opt/readline/lib -I /Users/ariahi/.homebrew/opt/readline/include -Wall -Wextra -Werror -MMD -g
+CFLAGS = -L /Users/rel-maza/.brew/opt/readline/lib -I /Users/rel-maza/.brew/opt/readline/include -Wall -Wextra -Werror -MMD -g
 
 DEP = $(SRC:.c=.d)
 
