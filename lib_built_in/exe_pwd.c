@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 01:56:28 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/14 15:27:50 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/19 21:17:38 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,8 @@
 int	exe_pwd(int ac, char **av)
 {
 	char	cwd[MAXPATHLEN];
-	char	*pwd;
 
-	pwd = get_env("PWD");
-	if (pwd)
-		ft_putstr_fd(pwd, 1);
-	else if (getcwd(cwd, MAXPATHLEN))
+	if (getcwd(cwd, MAXPATHLEN))
 		ft_putstr_fd(cwd, 1);
 	else
 		return (perror("minishell: pwd"), 1);
