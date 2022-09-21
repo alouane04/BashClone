@@ -6,7 +6,11 @@
 /*   By: rel-maza <rel-maza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 16:46:54 by ariahi            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/09/21 21:48:13 by rel-maza         ###   ########.fr       */
+=======
+/*   Updated: 2022/09/21 21:09:26 by ariahi           ###   ########.fr       */
+>>>>>>> 3f2c5bad20c3eae4160ef1cfb44d33c49fb8a2f0
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +43,18 @@ void	exe_set_signal(int catch_signals)
 	signal(SIGQUIT, sig_quit_handler);
 	if (catch_signals)
 		rl_catch_signals = 0;
+}
+
+int	event(void)
+{
+	return (0);
+}
+
+void	handler(int sig)
+{
+	if (sig == SIGINT)
+	{
+		g_shell.exec = -1;
+		rl_done = 1;
+	}
 }

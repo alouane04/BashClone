@@ -6,11 +6,12 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:27:02 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/16 11:12:06 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/21 21:09:03 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
+#include "../minishell.h"
 
 static	int	write_heredoc_line(char *file, int fd, char *line, bool expa)
 {
@@ -32,19 +33,25 @@ static	int	read_heredoc(char *file, char *delime, bool expand)
 	char	*line;
 	int		fd;
 
+	rl_event_hook = event;
+	signal(SIGINT, handler);
 	fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 		return (ft_putstr_fd("minishell: ", 2), ft_putstr_fd(file, 2),
 			ft_putstr_fd(": ", 2), perror(NULL), fd);
-	line = readline("> ");
-	while (line)
+	
+	while (1)
 	{
-		if (!strcmp(line, delime))
+		line = readline("> ");
+		if (!line)
+			return (ft_putstr_fd("\n", 1), 0);
+		if (g_shell.exec == -1)
+			return (0);
+		if (!strcmp(line, delime) )
 			break ;
 		if (write_heredoc_line(file, fd, line, expand))
 			return (-1);
 		free(line);
-		line = readline("> ");
 	}
 	return (free(line), close(fd), 0);
 }
