@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exe_signals.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rel-maza <rel-maza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 16:46:54 by ariahi            #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2022/09/21 21:48:13 by rel-maza         ###   ########.fr       */
+=======
 /*   Updated: 2022/09/21 21:09:26 by ariahi           ###   ########.fr       */
+>>>>>>> 3f2c5bad20c3eae4160ef1cfb44d33c49fb8a2f0
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +32,7 @@ static void	sig_quit_handler(int sig)
 	if (!g_shell.exec)
 		return ;
 	rl_replace_line("", 0);
-	ft_putstr_fd("Quit ", 1);
+	ft_putstr_fd("Quit: ", 1);
 	ft_putnbr_fd(sig, 1);
 	ft_putstr_fd("\n", 1);
 }

@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exe_built_in.c                                     :+:      :+:    :+:   */
+/*   pwd_exe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-maza <rel-maza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/03 01:46:21 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/20 21:53:17 by rel-maza         ###   ########.fr       */
+/*   Created: 2022/09/16 10:07:53 by rel-maza          #+#    #+#             */
+/*   Updated: 2022/09/20 12:08:25 by rel-maza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parse/parse.h"
 #include "../minishell.h"
+#include "sys/param.h"
 
-int	exe_built_in(t_parse *parse, t_built_in built_in)
+int	exe_pwd(int ac, char **av)
 {
-	int	stdio[2];
-	int	i;
+	char	cwd[MAXPATHLEN];
 
-	i = check_rdr(parse->rdr_lst, stdio);
-	if (i)
-		return (-1);
-	g_shell.exit_s = built_in(parse->ac, parse->av);
-	i = stdio_res(stdio);
-	if (i)
-		return (-1);
-	return (0);
+	if (getcwd(cwd, MAXPATHLEN))
+		ft_putstr_fd(cwd, 1);
+	else
+		return (perror("minishell: pwd"), 1);
+	return (ft_putstr_fd("\n", 1), (void)ac, (void)av, 0);
 }
