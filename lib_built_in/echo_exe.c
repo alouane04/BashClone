@@ -1,29 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exe_built_in.c                                     :+:      :+:    :+:   */
+/*   echo_exe.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-maza <rel-maza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/03 01:46:21 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/20 21:53:17 by rel-maza         ###   ########.fr       */
+/*   Created: 2022/09/16 10:07:26 by rel-maza          #+#    #+#             */
+/*   Updated: 2022/09/20 12:02:01 by rel-maza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parse/parse.h"
 #include "../minishell.h"
 
-int	exe_built_in(t_parse *parse, t_built_in built_in)
+static int	check_option(char *av)
 {
-	int	stdio[2];
+	if (*av != '-' || *++av != 'n')
+		return (0);
+	av++;
+	while (*av == 'n')
+		av++;
+	if (*av == '\0')
+		return (1);
+	return (0);
+}
+
+int	exe_echo(int ac, char **av)
+{
 	int	i;
 
-	i = check_rdr(parse->rdr_lst, stdio);
+	(void)ac;
+	av++;
+	i = 1;
+	while (*av)
+	{
+		if (!check_option(*av))
+			break ;
+		i = 0;
+		av++;
+	}
+	while (*av)
+	{
+		ft_putstr_fd(*av, 1);
+		av++;
+		if (*av)
+			ft_putstr_fd(" ", 1);
+	}
 	if (i)
-		return (-1);
-	g_shell.exit_s = built_in(parse->ac, parse->av);
-	i = stdio_res(stdio);
-	if (i)
-		return (-1);
+		ft_putstr_fd("\n", 1);
 	return (0);
 }
