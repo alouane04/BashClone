@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 16:46:54 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/17 18:25:55 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/21 21:09:26 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,18 @@ void	exe_set_signal(int catch_signals)
 	signal(SIGQUIT, sig_quit_handler);
 	if (catch_signals)
 		rl_catch_signals = 0;
+}
+
+int	event(void)
+{
+	return (0);
+}
+
+void	handler(int sig)
+{
+	if (sig == SIGINT)
+	{
+		g_shell.exec = -1;
+		rl_done = 1;
+	}
 }
