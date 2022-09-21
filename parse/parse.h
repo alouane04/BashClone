@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 18:34:05 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/17 09:08:17 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/21 21:02:55 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,9 @@ void	free_tree_node(t_parse *parse);
 void	free_rdr(t_rdr *rdr);
 
 void	free_tree(t_parse **parse);
+
+void	handler(int sig);
+
+int		event(void);
 
 #endif
