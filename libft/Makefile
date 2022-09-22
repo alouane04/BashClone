@@ -6,7 +6,7 @@
 #    By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/14 15:25:14 by ariahi            #+#    #+#              #
-#    Updated: 2022/09/14 09:36:23 by ariahi           ###   ########.fr        #
+#    Updated: 2022/09/22 15:21:00 by ariahi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ Src = ft_strlen.c ft_strlcpy.c ft_strlcat.c ft_strchr.c ft_strrchr.c ft_strnstr.
 			ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putchar_fd.c ft_strsep.c\
 		ft_strcspn.c ft_strnlen.c ft_lstput_orderly.c lst_put_orderly_sorted.c\
 	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c\
-ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_atoll.c ft_lstrm.c ft_strspn.c
+ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_atoll.c ft_lstrm.c ft_strspn.c lst_put_orderly_sorted_2.c
 
 Cc = gcc
 Flags = -Wall -Wextra -Werror -g

@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 10:49:10 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/22 11:16:08 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/22 15:20:44 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void		*ft_memmove(void *dst, const void *src, size_t len);
 void		*ft_memchr(const void *s, int c, size_t n);
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t count, size_t size);
+void		lst_put_orderly_sorted_2(t_list **lst, t_list *new);
 void		lst_put_orderly_sorted(t_list **lst, t_list *new, t_cmpfn cmpfn);
 char		*ft_strdup(const char *s1);
 char		*ft_substr(const char *s, unsigned int start, size_t len);
