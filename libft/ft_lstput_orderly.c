@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 17:46:13 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/22 11:15:25 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/22 15:23:13 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ t_list	*lst_put_orderly(t_list **lst, char *d_name)
 	new = ft_lstnew(dup);
 	if (!new || !dup)
 		return (free(dup), free(new), ft_lstclear(lst, free), NULL);
-	return (lst_put_orderly_sorted(lst, new, (t_cmpfn)cmp_env), new);
+	return (lst_put_orderly_sorted_2(lst, new), new);
 }
