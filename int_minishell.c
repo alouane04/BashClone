@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 00:31:09 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/17 19:38:41 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/22 14:02:53 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	creat_env(char **env)
 		lst = ft_lstnew(t_env);
 		if (!t_env || !lst)
 			return (ft_free_env(t_env), free(lst), -1);
-		lst_put_orderly_sorted(&g_shell.envlst, lst);
+		lst_put_orderly_sorted(&g_shell.envlst, lst, (t_cmpfn)cmp_env);
 		env++;
 	}
 	return (0);
