@@ -6,7 +6,7 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 23:20:11 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/13 11:24:58 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/22 11:30:24 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ t_list	*ft_find(t_list *envlst, char *name);
 int		add_env(char *name, char *value);
 
 int		update_env(t_env *env, char *value);
+
+int		cmp_env(t_env *env1, t_env *env2);
 
 #endif
