@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_exe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rel-maza <rel-maza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 10:07:54 by rel-maza          #+#    #+#             */
-/*   Updated: 2022/09/20 15:28:48 by rel-maza         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:58:11 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,15 @@ static void	print_export(void)
 	}
 }
 
+static	void	print_error(char *name, char *av)
+{
+	ft_putstr_fd("minishell: export: '", 2);
+	ft_putstr_fd(name, 2);
+	ft_putstr_fd("=", 2);
+	ft_putstr_fd(av, 2);
+	ft_putstr_fd("': not a valid identifier\n", 2);
+}
+
 static int	export(char *av)
 {
 	char	*name;
@@ -42,15 +51,17 @@ static int	export(char *av)
 	i = 1;
 	name = ft_strsep(&av, "=");
 	if (!ft_isalpha(*name) && *name != '_')
-		return (ft_putstr_fd("minishell: export: '", 2), ft_putstr_fd(name, 2),
-			ft_putstr_fd("=", 2), ft_putstr_fd(av, 2),
-			ft_putstr_fd("': not a valid identifier\n", 2), 1);
+		return (print_error(name, av), 1);
 	while (ft_isalnum(name[i]) || name[i] == '_')
 		i++;
+	if (name[i] == '+' && name[i + 1] == '\0')
+	{
+		name[i] = '\0';
+		if (get_env(name))
+			av = ft_strjoin(get_env(name), av);
+	}
 	if (name[i] != '\0')
-		return (ft_putstr_fd("minishell: export: '", 2), ft_putstr_fd(name, 2),
-			ft_putstr_fd("=", 2), ft_putstr_fd(av, 2),
-			ft_putstr_fd("': not a valid identifier\n", 2), 1);
+		return (print_error(name, av), 1);
 	if (set_env(name, av))
 		return (ft_putstr_fd("minishell: export: '", 2), ft_putstr_fd(name, 2),
 			ft_putstr_fd("=", 2), ft_putstr_fd(av, 2), perror("': "), 1);
