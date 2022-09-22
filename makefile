@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+         #
+#    By: rel-maza <rel-maza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/17 13:09:16 by ariahi            #+#    #+#              #
-#    Updated: 2022/09/22 11:51:47 by ariahi           ###   ########.fr        #
+#    Updated: 2022/09/22 15:25:02 by rel-maza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ NAME = minishell
 
 CC = cc
 
-CFLAGS = -L /Users/$(USER)/.brew/opt/readline/lib -I /Users/$(USER)/.brew/opt/readline/include -Wall -Wextra -Werror -MMD -g
+CFLAGS = -L /Users/$(USER)/.brew/opt/readline/lib -I /Users/$(USER)/.brew/opt/readline/include -Wall -Wextra -Werror -MMD
 
 DEP = $(SRC:.c=.d)
 
