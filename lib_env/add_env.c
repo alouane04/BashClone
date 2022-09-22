@@ -6,14 +6,14 @@
 /*   By: ariahi <ariahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 18:24:51 by ariahi            #+#    #+#             */
-/*   Updated: 2022/09/22 11:33:28 by ariahi           ###   ########.fr       */
+/*   Updated: 2022/09/22 12:58:43 by ariahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 #include "../minishell.h"
 
-int cmp_env(t_env *env1, t_env *env2)
+int	cmp_env(t_env *env1, t_env *env2)
 {
 	int	cmp;
 
