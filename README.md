@@ -2,9 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/alouane04">
-    <picture>
     <img alt="minishell" src="https://camo.githubusercontent.com/4c85765ee3c4f1446fb7a88b7d74c3cfcfbcc3c4b5a9123281ff3c3821ab6524/68747470733a2f2f6d69726f2e6d656469756d2e636f6d2f6669742f632f313833382f3535312f312a76346f3241584c494a6148535a6d71595a6b323671412e6a706567" width=500>
-    </picture>
   </a>
 </p>
 
